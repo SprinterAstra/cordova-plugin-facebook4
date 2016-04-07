@@ -576,7 +576,10 @@ public class ConnectPlugin extends CordovaPlugin {
         graphContext.sendPluginResult(pr);
 
         graphPath = args.getString(0);
-        JSONArray arr = args.getJSONArray(1);
+        if (args.getString(1) != null) {
+            graphPath += "?" + args.getString(1)
+        }
+        JSONArray arr = args.getJSONArray(2);
 
         final Set<String> permissions = new HashSet<String>(arr.length());
         for (int i = 0; i < arr.length(); i++) {
