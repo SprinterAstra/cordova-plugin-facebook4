@@ -330,8 +330,13 @@
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }
 
-    NSString *graphPath = [command argumentAtIndex:0];
-    NSArray *permissionsNeeded = [command argumentAtIndex:1];
+    NSString *graphPath = [command argumentAtIndex:0]; //me
+    NSArray *paramsFields = [command argumentAtIndex:1]; //["first_name, last_name]
+    NSString *strParams = [paramsFields componentsJoinedByString:@","]
+    NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:strParams forKey:@"fields"];
+    
+    NSArray *permissionsNeeded = [command argumentAtIndex:2];
     NSSet *currentPermissions = [FBSDKAccessToken currentAccessToken].permissions;
 
     // We will store here the missing permissions that we will have to request
@@ -364,7 +369,7 @@
     };
 
     NSLog(@"Graph Path = %@", graphPath);
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:graphPath parameters:nil];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:graphPath parameters:parameters];
 
     // If we have permissions to request
     if ([permissions count] == 0){
