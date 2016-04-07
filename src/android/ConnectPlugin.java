@@ -577,7 +577,7 @@ public class ConnectPlugin extends CordovaPlugin {
 
         graphPath = args.getString(0);
         if (args.getString(1) != null) {
-            graphPath += "?" + args.getString(1);
+            graphPath += "?fields=" + args.getString(1);
         }
         JSONArray arr = args.getJSONArray(2);
 
