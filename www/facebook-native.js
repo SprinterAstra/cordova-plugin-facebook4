@@ -39,7 +39,7 @@ exports.logout = function logout (s, f) {
 
 exports.api = function api (graphPath, fields, permissions, s, f) {
   permissions = permissions || []
-  fields = fields || []
+  fields = fields || ""
   exec(s, f, 'FacebookConnectPlugin', 'graphApi', [graphPath, fields, permissions])
 }
 
