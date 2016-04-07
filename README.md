@@ -297,7 +297,7 @@ var fbLoginSuccess = function (userData) {
 Using the graph api this is a very simple task:
 
 ```js
-facebookConnectPlugin.api("<user-id>/?fields=id,email", ["user_birthday"],
+facebookConnectPlugin.api("<user-id>", "id,email", ["user_birthday"],
   function onSuccess (result) {
     console.log("Result: ", result);
     /* logs:
