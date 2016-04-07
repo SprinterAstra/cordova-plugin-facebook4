@@ -37,9 +37,10 @@ exports.logout = function logout (s, f) {
   exec(s, f, 'FacebookConnectPlugin', 'logout', [])
 }
 
-exports.api = function api (graphPath, permissions, s, f) {
+exports.api = function api (graphPath, fields, permissions, s, f) {
   permissions = permissions || []
-  exec(s, f, 'FacebookConnectPlugin', 'graphApi', [graphPath, permissions])
+  fields = fields || []
+  exec(s, f, 'FacebookConnectPlugin', 'graphApi', [graphPath, fields, permissions])
 }
 
 exports.appInvite = function appLinks (options, s, f) {
