@@ -331,10 +331,9 @@
     }
 
     NSString *graphPath = [command argumentAtIndex:0]; //me
-    NSArray *paramsFields = [command argumentAtIndex:1]; //["first_name, last_name]
-    NSString *strParams = [paramsFields componentsJoinedByString:@","]
+    NSString *paramsFields = [command argumentAtIndex:1]; //"first_name, last_name
     NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:strParams forKey:@"fields"];
+    [parameters setValue:paramsFields forKey:@"fields"];
     
     NSArray *permissionsNeeded = [command argumentAtIndex:2];
     NSSet *currentPermissions = [FBSDKAccessToken currentAccessToken].permissions;
