@@ -171,6 +171,18 @@
         if (permissions == nil) {
             permissions = @[];
         }
+        
+        if ([self areAllPermissionsReadPermissions:permissions]) {
+            [FBSession
+             openActiveSessionWithReadPermissions:permissions
+             allowLoginUI:YES
+             completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                 [self sessionStateChanged:session
+                                     state:state
+                                     error:error];
+            }
+        }
+        
         if (! [self areAllPermissionsReadPermissions:permissions]) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
                                              messageAsString:@"You can only ask for read permissions initially"];
